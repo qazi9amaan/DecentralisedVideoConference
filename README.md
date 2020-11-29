@@ -1,7 +1,7 @@
 # Aselpanda
 
-Project presentation can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/raw/master/presentation_team12.ppt">here</a>.<br>
-Click below to start the ppt
+Project presentation can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/raw/master/presentation_team12.ppt">here</a>.To start presenting now click below
+<br>
 <a target="_blank" href="https://1drv.ms/p/s!AhOzaJWbDQxqhTL-mRHEofdiUYOD?e=YswtOu"><img src="/ss/Screenshot from 2020-11-30 03-39-41.png"></img></a>
 
 ## Inroduction
