@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild ,ElementRef,Input } from '@angular/core';
+import { Component, AfterContentInit,ViewChild ,ElementRef,Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-single-user',
@@ -13,13 +13,16 @@ export class SingleUserComponent implements OnInit {
   uservideo!: ElementRef;
   username :string ="";
   userid :string ="";
-
-  constructor() { }
+  recipients:any = [];
+  recipient = '';
+  constructor() { 
+  }
 
   ngOnInit(): void {
-    this.addchildVideoStream(this.user.stream);
-    this.userid = this.user.username;
-    this.username = this.user.username;
+      this.addchildVideoStream(this.user.stream);
+      this.userid = this.user.username;
+      this.username = this.user.username;
+  
 
   }
 

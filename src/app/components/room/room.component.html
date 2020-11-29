@@ -39,15 +39,10 @@
                   <div class="video    py-2 w-100">
                     
                     <div
-                     style="height: auto !important"
-                      id="other-users-video" *ngFor="let data of connectedUsers" class="other-users-video d-flex flex-column">
+                     style="height: auto !important" id="other-users-video" class="other-users-video d-flex flex-column">
+                        <app-single-user [user] = "data" ng-options="users in connectedUsers | unique:'username'" *ngFor = "let data of connectedUsers"  >
 
-                      <app-single-user [user] = "data" >
-
-                      </app-single-user>
-
-
-                      
+                        </app-single-user>
                     </div>
                   </div>
                 </div> 

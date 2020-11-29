@@ -23,6 +23,8 @@ export class RoomComponent implements OnInit  {
   connectedUsers: any[] = [];
   muteBtn :any ="fas fa-microphone";
   showVideo :any ="fas fa-video";
+  newusercount :any =0;
+  showusercount :any =0;
 
   constructor(
     private route: ActivatedRoute,private socketService: SocketioService
@@ -60,14 +62,21 @@ export class RoomComponent implements OnInit  {
       call.on('stream', (userVideoStream:any) => {
         this.addmVideoStream(this.myvideostream);
         console.log("recieving :: " + userVideoStream)
-        this.connectedUsers.push({
-          stream:userVideoStream,
-          username:call.peer
-        });    
+       
+        if(this.showusercount %2 == 0)
+        {
+          this.connectedUsers.push({
+            stream:userVideoStream,
+            username:call.peer
+          });    
+          this.showusercount = this.showusercount+1;
+
+        }
 
         this.peers[parseInt(call.peer)]=call
 
       })
+      this.connectedUsers.pop()
 
       call.on('close', () => {
         if (this.peers[call.peer]) {
@@ -91,13 +100,19 @@ export class RoomComponent implements OnInit  {
     var call = this.myPeer.call(userId, stream);
     call.on('stream', (userVideoStream:any) => {
       this.addmVideoStream(stream)
-      console.log("sending :: " + userVideoStream)
-      this.connectedUsers.push({
-        stream:userVideoStream,
-        username:userId
-      });
+      console.log(this.newusercount);
+      if(this.newusercount %2 == 0)
+      {
+        this.connectedUsers.push({
+          stream:userVideoStream,
+          username:userId
+        });
+        this.newusercount = this.newusercount+1;
+
+      }
 
     })
+
     call.on('close', () => {
       this.removeItem(userId);
       this.peers[userId].close()
