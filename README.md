@@ -12,10 +12,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Screenshots
 ### Landing Page
-<img src="/ss/1.jpeg"></img>
+<img src="/ss/1.png"></img>
 
 ### Room Page
-<img src="/ss/2.jpeg"></img>
+<img src="/ss/2.png"></img>
 
 ##Features
 1. Decentralised Servers 
