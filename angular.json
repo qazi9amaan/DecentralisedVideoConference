@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "aselpanda"
+  "defaultProject": "aselpanda",
+  "cli": {
+    "analytics": false
+  }
 }

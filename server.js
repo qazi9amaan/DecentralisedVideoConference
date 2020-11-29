@@ -1,32 +1,41 @@
-const express = require('express')
-const path = require('path')
-const app = express()
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
+var express = require('express');
+const { nextTick } = require('process');
+var socket = require('socket.io');
 
-app.use(express.static(path.join(__dirname+"/dist/aselpanda")));
+var app = express();
+var server = app.listen(3000, function(){
+    console.log('listening for requests on port 3000');
+});
+
+var io = socket(server);
+app.use(express.static('dist/aselpanda'))
 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+"/dist/aselpanda/index.html"))
-  })
+// app.on('/',(req,res)=>{
+//     res.sendFile('index.html');
+// })
 
-
-io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
-    socket.join(roomId)
-    socket.to(roomId).broadcast.emit('user-connected', userId)
-    
-    socket.on('message', (message) => {
-      io.to(roomId).emit('createMessage', message,userId)
-    });
-
-    socket.on('disconnect', () => {
-      socket.to(roomId).broadcast.emit('user-disconnected', userId)
-    })
-  })
-console.log("connected!");
+app.on('*',(req,res)=>{
+    res.redirect('index.html');
 })
 
 
-server.listen(process.env.PORT||3030)
+io.on('connection', (socket) => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.to(roomId).broadcast.emit('user-connected', userId)
+            console.log(`New connection ${socket.id}`)
+
+        socket.on('chat', function(data){
+            io.to(roomId).sockets.emit('chat', data);
+        });
+
+        socket.on('typing', function(data){
+            io.to(roomId).sockets.emit('typing', data);
+        });
+
+        socket.on('disconnect', () => {
+            socket.to(roomId).broadcast.emit('user-disconnected', userId)
+        })
+    })
+});

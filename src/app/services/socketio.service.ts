@@ -1,35 +1,31 @@
+import { io } from 'socket.io-client';
 import { Injectable } from '@angular/core';
-import {io} from 'socket.io-client';
-import {environment} from '../../environments/environment';
-
+import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
 export class SocketioService {
-  
-  socket:any;
-
-  constructor() { }
-  setupSocketConnection() {
-    this.socket = io(environment.SOCKET_ENDPOINT);
-    this.socket.on('connection', (socket:any) => {
-      socket.on('join-room', (roomId:string, userId:string) => {
-        socket.join(roomId)
-        socket.to(roomId).broadcast.emit('user-connected', userId)
-        
-        socket.on('message', (message:string) => {
-          this.socket.to(roomId).emit('createMessage', message,userId)
-        });
-    
-        socket.on('disconnect', () => {
-          socket.to(roomId).broadcast.emit('user-disconnected', userId)
-        })
-      })
-    })
-
+    private socket: any;
+  constructor() {
+    this.socket = io("http://localhost:3000");
   }
 
- 
+  listen(eventname: string) : Observable<any> {
+      return new Observable((subscriber:any) => {
+          this.socket.on(eventname, (data:any) => {
+              subscriber.next(data);
+          })
+      })
+  }
+
+  emit(eventname: string, data: any) {
+      this.socket.emit(eventname, data);
+  }
+  emitMultipleArgs(eventname: string, data: any,data2: any) {
+    this.socket.emit(eventname, data,data2);
+}
+
+
 }
 
 

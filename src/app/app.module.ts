@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,6 +18,7 @@ import {SocketioService} from './services/socketio.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule
 
   ],
   providers: [SocketioService],

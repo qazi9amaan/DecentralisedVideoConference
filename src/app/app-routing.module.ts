@@ -6,7 +6,7 @@ import { UUID } from 'angular2-uuid';
 
 const routes: Routes = [
   {path:"",component:ConnectComponent},
-  {path:"room/:room",component:RoomComponent},
+  {path:"room/:room/:name",component:RoomComponent},
   {path:"new-room",
    redirectTo: `room/${UUID.UUID()}`, 
    pathMatch: 'full'}

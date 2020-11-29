@@ -11,52 +11,88 @@ const peers:any = {};
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-  room: string;
-  peer : any;
-  mypeer : any;
-  anotherid: any;
-  
-
-  //   mitronPeers: Array<MitronPeer> = new Array()
-
-  // @ViewChild('myVideo')
-  // myVideo: ElementRef<HTMLVideoElement>
-
-  // @ViewChildren('peerVideo')
-  // peerVideos: QueryList<ElementRef<HTMLVideoElement>>
+  room: string ="";
+  output: any[] = [];
+  userName: string ="";
+  message: string ="";
+  feedback : string ="";
 
   constructor(
     private route: ActivatedRoute,private socketService: SocketioService) { 
-    this.room = "";
-  }
+      this.room = this.route.snapshot.paramMap.get('room') || "";
+      this.userName = this.route.snapshot.paramMap.get('name') || "";
+
+    }
 
   
  
 
   ngOnInit() {
-
     this.room = this.route.snapshot.paramMap.get('room') || "";
-    this.socketService.setupSocketConnection();
-    
+    this.userName = this.route.snapshot.paramMap.get('name') || "";
+
+    this.socketService.emitMultipleArgs('join-room', this.room,this.userName); 
+    this.socketService.listen('typing').subscribe((data) => this.updateFeedback(data));
+    this.socketService.listen('chat').subscribe((data) => this.updateMessage(data));
+    this.socketService.listen('user-connected').subscribe((data) => this.connectNewUser(data));
+    this.socketService.listen('user-disconnected').subscribe((data) => this.disconnectUser(data));
+
   }
 
+  messageTyping(e:any): void {
+    if (e.which == 13) {
+      this.sendMessage();
+    }else{
+      this.socketService.emit('typing', this.userName); 
+    }
+  }
 
+  sendMessage(): void {
+    this.socketService.emit('chat', {
+      message: this.message,
+      handle: this.userName
+    });
+    this.message = "";    
+  }
 
-    
+  updateMessage(data:any) {
+    this.feedback = '';
+    if(!!!data) return;
+    if(data.handle == this.userName)
+    {
+      data.type = "msg-sender"
+    }else{
+      data.type = "msg-reciever"
+    }
+    this.output.push(data);
+  }
+
+  updateFeedback(data: any){
+    this.feedback = `${data} is typing a message`;
+  }
+  
+  disconnectUser(data:any){
+    if(!!!data) return;
+    this.output.push({
+      message: `Ahan! ${data} left the room`,
+      handle: "",
+      type : "helper"
+
+    });
+  }
+
+  connectNewUser(data:any){
+    if(!!!data) return;
+    this.output.push({
+      message: `Hey! ${data} joined the room`,
+      type : "helper",
+      handle: ""
+
+    });
+  }
     
   }
 
   
 
  
-   // postAboutpeer(msg:string){
-  //   var newUser = document.createElement('div');
-  //   newUser.className ='helper';
-  //   newUser.innerHTML=msg;
-  //   // this.messages.nativeElement.append(newUser);
-  //   console.log(msg)
-  // }
-
-
-
-// }
