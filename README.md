@@ -1,27 +1,25 @@
 # Aselpanda
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+This project was generated with [Angular][NodeJs][SocketIO].
 
-## Development server
+## Deployment server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run build` for compiling and building front-end bundle.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://aselpanda.ml/` (locally hosted). The app will load and you can join the room and chat in secure environmentQ.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Screenshots
+### Landing Page
+<img src="/ss/1.jpeg"></img>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Room Page
+<img src="/ss/2.jpeg"></img>
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Features
+1. Decentralised Servers 
+2. Live chat (connection oriented) can support multiple users
+3. Only initial connection depends on server, once connected to a specific room your network is secure and decentralised.
+4. No database
+4. No login / register .
