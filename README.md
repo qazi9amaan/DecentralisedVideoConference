@@ -1,10 +1,10 @@
 # Aselpanda
-
-This project was generated with [Angular][NodeJs][SocketIO].
+https://aselpanda.ml/
+This project was developed with [Angular][NodeJs][SocketIO].
 
 ## Deployment server
 
-Run `npm run build` for compiling and building front-end bundle.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://aselpanda.ml/` (locally hosted). The app will load and you can join the room and chat in secure environmentQ.
+Run `npm run build` for compiling and building front-end bundle.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://aselpanda.ml/` (which is locally hosted). The app will start loading and you can join any room and start a conference in a secure environment.
 
 ## Build
 
@@ -17,9 +17,15 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Room Page
 <img src="/ss/2.png"></img>
 
-##Features
+## Features
 1. Decentralised Servers 
 2. Live chat (connection oriented) can support multiple users
 3. Only initial connection depends on server, once connected to a specific room your network is secure and decentralised.
 4. No database
 4. No login / register .
+
+## Extension
+1. Include ScreenShare
+2. Provide dedicated rooms
+3. Record Meetings
+4. Allow short urls to join meeting
