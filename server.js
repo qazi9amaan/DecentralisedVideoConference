@@ -24,14 +24,14 @@ io.on('connection', (socket) => {
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId)
         socket.to(roomId).broadcast.emit('user-connected', userId)
-            console.log(`New connection ${socket.id}`)
+            console.log(`New connection ${userId} `)
 
         socket.on('chat', function(data){
             io.to(roomId).sockets.emit('chat', data);
         });
 
         socket.on('typing', function(data){
-            io.to(roomId).sockets.emit('typing', data);
+            io.to(roomId).sockets.emit('typing', userId);
         });
 
         socket.on('disconnect', () => {

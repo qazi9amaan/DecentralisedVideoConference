@@ -1,42 +1,124 @@
-import { Component, OnInit ,ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit ,AfterViewInit,ViewChild ,ElementRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import * as Peer from 'peerjs';
 import {SocketioService} from '../../services/socketio.service';
-
-const peers:any = {};
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.css']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit  {
+
+  @ViewChild('mvideo', { static: true })
+  mvideo!: ElementRef;
+
   room: string ="";
   output: any[] = [];
   userName: string ="";
   message: string ="";
   feedback : string ="";
+  myvideostream : any = null;
+  myPeer :any;
+  peers:any = {};
+  connectedUsers: any[] = [];
+  muteBtn :any ="fas fa-microphone";
+  showVideo :any ="fas fa-video";
 
   constructor(
-    private route: ActivatedRoute,private socketService: SocketioService) { 
+    private route: ActivatedRoute,private socketService: SocketioService
+    ) { 
       this.room = this.route.snapshot.paramMap.get('room') || "";
       this.userName = this.route.snapshot.paramMap.get('name') || "";
-
     }
 
-  
+
+
  
+  async loadMedia() {
+    navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true
+    }).then(stream => {
+      this.addmVideoStream(stream)
+    });
+  
+  }
 
   ngOnInit() {
+    this.myPeer = new Peer(undefined);
     this.room = this.route.snapshot.paramMap.get('room') || "";
     this.userName = this.route.snapshot.paramMap.get('name') || "";
+    this.myPeer.on('open', (id:any) => {
+      this.socketService.emitMultipleArgs('join-room', this.room,id);
+    })
+    this.loadMedia();
 
-    this.socketService.emitMultipleArgs('join-room', this.room,this.userName); 
+    this.myPeer.on('call', (call:any) => {
+      call.answer(this.myvideostream)
+     
+      const video = document.createElement('video')
+      call.on('stream', (userVideoStream:any) => {
+        this.addmVideoStream(this.myvideostream);
+        console.log("recieving :: " + userVideoStream)
+        this.connectedUsers.push({
+          stream:userVideoStream,
+          username:call.peer
+        });    
+
+        this.peers[parseInt(call.peer)]=call
+
+      })
+
+      call.on('close', () => {
+        if (this.peers[call.peer]) {
+          this.peers[call.peer].close()
+          this.removeItem(call.peer);
+        }
+      })
+    
+    })
+
     this.socketService.listen('typing').subscribe((data) => this.updateFeedback(data));
     this.socketService.listen('chat').subscribe((data) => this.updateMessage(data));
     this.socketService.listen('user-connected').subscribe((data) => this.connectNewUser(data));
     this.socketService.listen('user-disconnected').subscribe((data) => this.disconnectUser(data));
+  }
 
+  
+   initNewUser(userId:string) {
+    var stream = this.myvideostream;
+    
+    var call = this.myPeer.call(userId, stream);
+    call.on('stream', (userVideoStream:any) => {
+      this.addmVideoStream(stream)
+      console.log("sending :: " + userVideoStream)
+      this.connectedUsers.push({
+        stream:userVideoStream,
+        username:userId
+      });
+
+    })
+    call.on('close', () => {
+      this.removeItem(userId);
+      this.peers[userId].close()
+    })
+    this.peers[userId] = call
+  }
+  
+
+  addmVideoStream(stream:any){
+    var mvideo = this.mvideo.nativeElement;
+    mvideo.srcObject= stream;
+    mvideo.muted = true;
+    this.myvideostream = stream;
+    mvideo.addEventListener('loadedmetadata', () => {
+      mvideo.play()
+    })
+  }
+
+  removeItem(value:any){
+    var myEl =document.querySelector( '#peer-'+value ) ;
+    console.log(myEl)
   }
 
   messageTyping(e:any): void {
@@ -79,6 +161,7 @@ export class RoomComponent implements OnInit {
       type : "helper"
 
     });
+    this.removeItem(data)
   }
 
   connectNewUser(data:any){
@@ -89,8 +172,62 @@ export class RoomComponent implements OnInit {
       handle: ""
 
     });
+    this.initNewUser(data);
   }
     
+  expand_to_screen(a:any){
+    console.log("expanding....")
+    this.expand(this.mvideo.nativeElement);
+  }
+
+   expand(elem :any)
+  {
+    elem.requestFullscreen();
+    elem.mozRequestFullScreen();
+    elem.webkitRequestFullscreen();
+    elem.msRequestFullscreen();
+  }
+
+   muteUnmute(){
+    const enabled = this.myvideostream.getAudioTracks()[0].enabled;
+    if (enabled) {
+      this.myvideostream.getAudioTracks()[0].enabled = false;
+      this.setUnmuteButton();
+    } else {
+      this.setMuteButton();
+      this.myvideostream.getAudioTracks()[0].enabled = true;
+    }
+  }
+   playStop(){
+    let enabled = this.myvideostream.getVideoTracks()[0].enabled;
+    if (enabled) {
+      this.myvideostream.getVideoTracks()[0].enabled = false;
+      this.setPlayVideo()
+    } else {
+      this.setStopVideo()
+      this.myvideostream.getVideoTracks()[0].enabled = true;
+    }
+  }
+  setMuteButton() {
+    this.muteBtn = " fas fa-microphone";
+
+  }
+   setUnmuteButton(){
+    this.muteBtn = " fas fa-microphone-slash";
+  }
+
+  setStopVideo (){
+    this.showVideo = "fas fa-video";
+  }
+  
+  setPlayVideo(){
+    this.showVideo = "fas fa-video-slash";
+  }
+
+  screenshare(med :any){
+    console.log('aa');
+  }
+
   }
 
   

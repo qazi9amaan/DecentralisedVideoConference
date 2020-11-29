@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { RoomComponent } from './components/room/room.component';
 import { ConnectComponent } from './components/connect/connect.component';
 import {SocketioService} from './services/socketio.service';
+import { SingleUserComponent } from './components/single-user/single-user.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomComponent,
-    ConnectComponent
+    ConnectComponent,
+    SingleUserComponent
   ],
   imports: [
     BrowserModule,

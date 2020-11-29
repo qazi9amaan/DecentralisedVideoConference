@@ -1,0 +1,79 @@
+  
+      .other-users-video .single-user .card-img:fullscreen{
+          width: 100% !important;
+          height: 100% !important;
+      }
+      
+      .other-users-video{
+      z-index: 999;
+      position: absolute;
+      width: 250px;
+      right: 10px;
+      overflow-y: auto;
+      height: auto !important;
+      }
+      
+  
+      .video-block{
+      position: relative;
+      }
+      .video-block .video-options{
+      position: absolute;
+      bottom: 100px;
+      }
+      
+      .option-btn{
+      color: #4b5d67 ;
+      height: 15px !important;
+      width: 15px !important;
+      margin-right: 45px;
+      }
+      .option-btn >i{
+      font-size: 30px !important;
+      }
+      .option-btn:hover{
+      color: #fff !important;
+      }
+      .end-call:hover{
+      color: #CC3B33 !important;
+      }
+      
+      
+      .video{
+      position: relative;
+      }
+      .video .other-users-video{
+      z-index: 999;
+      position: absolute;
+      width: 250px;
+      right: 10px;
+      height: 55rem;
+      overflow-y: auto;
+      height: 100% !important;
+      }
+      
+    .card-img{
+      width: 260px !important;
+      height: 150px !important;
+      object-fit: cover !important;
+      }
+
+      .card{
+        border: none !important;
+        border-radius: .75rem;
+        margin-bottom: 2px !important;
+      }
+      
+   
+      
+      
+      
+      .other-users-video .single-user .option-btn >i{
+      font-size: 20px !important;
+      
+      }
+    
+      
+      .user-small-video{
+        object-fit: cover;
+      }

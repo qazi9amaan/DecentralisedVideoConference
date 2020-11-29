@@ -31,7 +31,7 @@
         <div class="row" style="height: 100vh;">
             <div class="col-md-9 video-block bg-black">
               <div class="mt-3 ml-1 ">
-                <video id="my-video" class="main-video  bg-dark ">
+                <video  #mvideo id="my-video" class="main-video  bg-dark ">
 
                 </video>
 
@@ -40,21 +40,12 @@
                     
                     <div
                      style="height: auto !important"
-                      id="other-users-video" class="other-users-video d-flex flex-column">
+                      id="other-users-video" *ngFor="let data of connectedUsers" class="other-users-video d-flex flex-column">
 
-                
+                      <app-single-user [user] = "data" >
 
-                      <!-- <div class="card single-user  text-white">
-                        <div class="card-img bg-black-dark"></div>
-                        <div class="card-img-overlay">
-                          <h5 class="card-title">User</h5>
-                          <div class="show-view mt-5 ">
-                            <div class="btn option-btn  rounded-circle ">
-                              <i class="fa fa fa-expand"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div> -->
+                      </app-single-user>
+
 
                       
                     </div>
@@ -64,22 +55,23 @@
 
                   <div class="p-4 video-options w-100 ">
                       <div class="d-flex justify-content-center align-items-center">
-                        <div id="expand-main" class="btn option-btn  rounded-circle ">
+                        <div (click)= "expand_to_screen($event)" id="expand-main" class="btn option-btn  rounded-circle ">
                           <i class="fa fa fa-expand"></i>
                         </div>
-                        <div id="cpy-link-btn" class="btn option-btn  rounded-circle ">
-                          <i class="fa fa fa-clone"></i>
-                        </div>
-                          <div id="main__mute_button" onclick="muteUnmute()"
+                        <!-- <div onclick= "screenshare()" 
+                        id="expand-main" class="btn option-btn  rounded-circle ">
+                          <i class="fa fa-desktop"></i>
+                        </div> -->
+                          <div id="main__mute_button" (click)="muteUnmute()"
                                class="btn option-btn  rounded-circle ">
-                            <i  class="fas fa-microphone"></i>
+                          <i  class="{{muteBtn}}"></i>
                           </div>
                           <div 
-                            onclick="playStop()"
+                            (click)="playStop()"
                             class="btn option-btn  rounded-circle "
                             id="main__video_button"
                           >
-                            <i class="fas fa-video"></i>
+                            <i class="{{showVideo}}"></i>
                           </div>
                           <a  href="/" class="btn option-btn end-call rounded-circle ">
                             <i class="fa fa-phone-alt"></i>
@@ -92,7 +84,7 @@
             <div class="col-md-3 shadow ">
               <div class="row message-block p-4 ">
                   <div class="col-md-12 px-0">
-                      <h3 class="display-5 py-3  text-white font-weight-light">Room Chats</h3>
+                      <h3 class="display-5 py-3  text-white font-weight-light"> {{room}} Room Chats</h3>
                       <!-- CHAT SECTION -->
                       <div id="output" *ngFor="let data of output" class=" mt-2   rounded ">
 

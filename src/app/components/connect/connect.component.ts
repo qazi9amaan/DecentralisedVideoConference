@@ -1,3 +1,4 @@
+import { UUID } from 'angular2-uuid';
 import { Component, AfterViewInit ,ViewChild, ElementRef} from '@angular/core';
 import {Router} from '@angular/router'
 
@@ -24,6 +25,7 @@ export class ConnectComponent implements AfterViewInit  {
       this.helptext = true;
     }
   }
+  
   validateroom(event: any){
     if(event.target.value == ""){
       this.message = "Please provide valid input for room ";
@@ -48,5 +50,8 @@ export class ConnectComponent implements AfterViewInit  {
 
   ngAfterViewInit() {
   }
-  
+
+  randomise(){
+    this.roomnumber = UUID.UUID();
+  }
 }
