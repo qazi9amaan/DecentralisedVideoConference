@@ -1,14 +1,10 @@
 # Aselpanda
-https://aselpanda.ml/
+https://aselpanda.ml/ <br>
 This project was developed with [Angular][NodeJs][SocketIO].
 
 ## Deployment server
 
 Run `npm run build` for compiling and building front-end bundle.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://aselpanda.ml/` (which is locally hosted). The app will start loading and you can join any room and start a conference in a secure environment.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Screenshots
 ### Landing Page
