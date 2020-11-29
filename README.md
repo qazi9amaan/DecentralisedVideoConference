@@ -2,8 +2,8 @@
 
 Project presentation can be found <a href="presentation_team12.ppt">here</a>. <br>
 This project was developed with `[Angular][NodeJs][SocketIO]`.
-<img src="presentation_team12.ppt"></img>
-
+<iframe 
+src="//docs.google.com/gview?url=https://github.com/qazi9amaan/DecentralisedVIdeoConference/presentation_team12.ppt&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
 <hr>
 Privacy is the driving force behind this project. It uses secure technologies like WebRTC , PeerJs , SocketIO to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible (nearly negligible) and does not know anything about the contents of established conversations. No accounts are required. No cookies are used. No data is being saved!.  
 
