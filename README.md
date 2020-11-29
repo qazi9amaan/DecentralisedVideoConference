@@ -3,12 +3,11 @@
 Project presentation can be found <a href="presentation_team12.ppt">here</a>. <br>
 <img src="/ss/Screenshot from 2020-11-30 03-39-41.png"></img>
 
-<hr>
-This project was developed with `[Angular][NodeJs][SocketIO]`.
-<br>
+## Inroduction
 Privacy is the driving force behind this project. It uses secure technologies like WebRTC , PeerJs , SocketIO to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible (nearly negligible) and does not know anything about the contents of established conversations. No accounts are required. No cookies are used. No data is being saved!.  
 
-Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. 
+Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. <br>
+This project was developed with [Angular] [NodeJs] [SocketIO].
 
 
 ## Deployment server
