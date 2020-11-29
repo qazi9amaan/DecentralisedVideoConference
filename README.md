@@ -1,13 +1,13 @@
 # Aselpanda
 
-Project presentation can be found <a href="presentation_team12.ppt">here</a>. 
-<iframe src="presentation_team12.ppt" style="width:600px;" frameborder="0"></iframe>
-<br>
+Project presentation can be found <a href="presentation_team12.ppt">here</a>. <br>
+This project was developed with `[Angular][NodeJs][SocketIO]`.
+<img src="presentation_team12.ppt"></img>
+
 <hr>
-This project was developed with [Angular][NodeJs][SocketIO].<br>
 Privacy is the driving force behind this project. It uses secure technologies like WebRTC , PeerJs , SocketIO to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible (nearly negligible) and does not know anything about the contents of established conversations. No accounts are required. No cookies are used. No data is being saved!.  
 
-Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. This is done using PeerJs & Socket.io
+Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. 
 
 
 ## Deployment server
