@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Asel Panda</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="css/demo.css" />
+  <link rel="stylesheet" href="css/templatemo-style.css">
+  
+  <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+		
+	</head>
+
+	<body>
+
+			<div id="particles-js"></div>
+		
+			<ul class="cb-slideshow">
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	        </ul>
+
+			<div class="container-fluid">
+				<div class="row cb-slideshow-text-container ">
+					<div class= "tm-content d-flex flex-column  justify-content-center col-xl-6 col-sm-8 col-xs-8 section blocks">
+						<header class="mb-5"><h1> Go Panda's</h1></header>
+						<p class="mb-3 text-white h2">Decentralised, Secure & Free Conferencing</p>
+						<p class="mb-5 text-light text-justify">Panda's is a new type of conferencing web app. 
+							You choose where your messages are stored,
+							 putting you in control of your data. 
+							 It gives you access to the Matrix open network, so you can talk to anyone. Element provides a new level of security, 
+							adding cross-signed device verification to default end-to-end encryption.</p>
+
+
+					</div>
+					<div class= "tm-content col-xl-6 col-sm-8 col-xs-8 section tutorial blocks">
+							<div method="get" class="subscribe-form mt-5">
+								<header class="mb-5"><h1> Meet / Host</h1></header>
+
+							   <div class="row form-section">
+	
+								<div class="col-md-8 col-sm-8 col-xs-8">
+									  <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required/><br>
+									  <input name="room" type="text" class="form-control" id="roomID" placeholder="Room name" required/>
+									 	<small class="d-flex mt-1 justify-content-end"><a onclick = "randomise()" href="#">Randomise room</a></small>
+								  </div>
+								<div class="col-md-5 col-sm-5  col-xs-5">
+									<button type="submit" class="tm-btn-subscribe bg-transparent text-white" onclick="formSubmit()">Host | Join </button>
+								</div>
+							
+							</div>
+						
+						
+						</div>
+						</div>
+				</div>	
+			</div>	
+	</body>
+	<script>
+		function formSubmit(){
+
+			var val =document.getElementById('roomID').value;
+			var name =document.getElementById('name').value;
+			name = (name != "") ? name : "User";
+			localStorage.setItem("name", name);
+
+			if(val == null || val == "" ) 
+			{
+				
+				window.location.href ="create-new-room" 
+			}else{
+				window.location = val;
+			}
+		}
+
+		function randomise(){
+			let r = Math.random().toString(30).substring(10);
+			document.getElementById('roomID').value = r;
+		}
+	</script>
+	<script type="text/javascript" src="js/particles.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</html>
