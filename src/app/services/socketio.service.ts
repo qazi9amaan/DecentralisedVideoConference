@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 export class SocketioService {
     private socket: any;
   constructor() {
-    this.socket = io("http://localhost:3000");
+    this.socket = io("https://aselpanda.ml/");
   }
 
   listen(eventname: string) : Observable<any> {
