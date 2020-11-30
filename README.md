@@ -10,7 +10,7 @@ Privacy is the driving force behind this project. It uses secure technologies li
 Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. This project was developed with `Angular` `NodeJs` `SocketIO`.
 
 ## Other Variant
-The other varient of this web application can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/tree/node-js">here</a>. To support multiple users and for an easy and as a beginers approach, same was done using `node-js` `html` `css` without any use of `angular`. To check the it in realtime please visit <a href="https://nchat.ml">https://nchat.ml</a>
+The other varient of this web application can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/tree/node-js">here</a>. To support multiple users and for an easy and as a beginers approach, same was done using `node-js` `html` `css` without any use of `angular`. To experience it in realtime please visit <a href="https://nchat.ml">https://nchat.ml</a>
 
 
 ## Deployment server
