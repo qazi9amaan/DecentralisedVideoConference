@@ -11,7 +11,7 @@ Our Conferencing Chat Room is completely decentralised and transfers your video 
 This project was developed with [Angular] [NodeJs] [SocketIO].
 
 ##Variant
-The other varient of this web application can be found `<a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/tree/node-js">here</a>`. To support multiple users and easy implementation of same was done using `node-js` `html` `css` without any use of `angular`. To check the appication in realtime please visit <a href="https://nchat.ml">here</a>
+The other varient of this web application can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/tree/node-js">here</a>. To support multiple users and easy implementation of same was done using `node-js` `html` `css` without any use of `angular`. To check the appication in realtime please visit <a href="https://nchat.ml">here</a>
 
 
 ## Deployment server
