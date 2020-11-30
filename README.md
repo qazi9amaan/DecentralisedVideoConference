@@ -1,4 +1,4 @@
-# DecentralisedVIdeoConference
+# DecentralisedVideoConference
 Decentralised And P2P Secure Video Conferencing Application
 
 Project presentation can be found <a href="https://github.com/qazi9amaan/DecentralisedVIdeoConference/raw/master/presentation_team12.ppt">here</a>.
@@ -7,13 +7,12 @@ Project presentation can be found <a href="https://github.com/qazi9amaan/Decentr
 ## Inroduction
 Privacy is the driving force behind this project. It uses secure technologies like WebRTC , PeerJs , SocketIO to directly connect between participants. The website that provides the web app and mediates the communication stores as few data as possible (nearly negligible) and does not know anything about the contents of established conversations. No accounts are required. No cookies are used. No data is being saved!.  
 
-Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. <br>
-This project was developed with [NodeJs] [SocketIO] [MongoDb].
+Our Conferencing Chat Room is completely decentralised and transfers your video directly to the peer you are talking to without the need of servers in the middle. This project was developed with `NodeJs` `SocketIO` `MongoDb`.
 
 
 ## Deployment server
 
-Run `npm i` for installing all the necessary dependecies.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://aselpanda.ml/` (which is locally hosted). The app will start loading and you can join any room and start a conference in a secure environment.
+Run `npm i` for installing all the necessary dependecies.`nodemon server.js` to start the server Then  Navigate to `http://localhost:3000/` or  `https://nchat.ml/` (which is locally hosted). The app will start loading and you can join any room and start a conference in a secure environment.
 
 ## Screenshots
 ### Landing Page
